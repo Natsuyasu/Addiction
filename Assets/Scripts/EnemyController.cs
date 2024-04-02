@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    protected Animator myAnimator;          
+    protected Animator myAnimator;
+    
 
     ////---------------------Start
     protected void Start()                    
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
     //Destroy
     void DestroyFun()
     {
+        
         Destroy(this.gameObject);     
     }
 

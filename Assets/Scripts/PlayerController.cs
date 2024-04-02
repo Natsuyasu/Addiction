@@ -38,15 +38,20 @@ public class PlayerController : MonoBehaviour
     //UI
     public Text StarNumUI;
     public Text CarrotNumUI;
+    public AudioSource GetCoinSource;
 
     //time
     private float myDelayTime = 0;               
-    private bool isdelayTimeOn;                 
+    private bool isdelayTimeOn;
+
+    private int currentSceneIndex;
 
     ////----------------------Start
     void Start()
     {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Initialization();       
+
     }
 
     
@@ -73,7 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))    
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);     
+                SceneManager.LoadScene(currentSceneIndex + 1);     
             }
         }
     }
@@ -190,11 +195,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Collection_Star"))      
         {
-
+            GetCoinSource.Play(delay: 0);
             StarNum++;                                
             collision.enabled = false;
             Destroy(collision.gameObject);
             EatingStar_UIFun();
+
         }
         if (collision.CompareTag("Collection_Carrot"))
         {
